@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Inter, JetBrains_Mono, Plus_Jakarta_Sans, Syne } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { RouteScrollbarController } from "@/components/route-scrollbar-controller";
+import { Providers } from "@/components/providers";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,31 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
+
+const fontSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-serif",
+  display: "swap",
+})
+
+const fontDisplay = Syne({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,9 +54,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${fontSans.variable} ${fontMono.variable} ${fontSerif.variable} ${fontDisplay.variable} font-sans antialiased min-h-dvh flex flex-col`}
+      >
+        <RouteScrollbarController />
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

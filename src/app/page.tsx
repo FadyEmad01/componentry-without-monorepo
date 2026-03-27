@@ -1,65 +1,190 @@
-import Image from "next/image";
+"use client"
+
+import { motion } from "motion/react"
+import { SiteHeader } from "@/components/site-header"
+import { HeroButtons } from "@/components/landing/hero-buttons"
+import { Testimonials } from "@/components/landing/testimonials"
+import { InfiniteIconField } from "@/components/landing/infinite-icon-field"
+import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div
+      data-route-home
+      className="relative min-h-screen w-full bg-white dark:bg-[#111] text-foreground transition-colors duration-300 selection:bg-zinc-200 dark:selection:bg-zinc-800"
+    >
+      <SiteHeader />
+
+      {/* Hero Content */}
+      <main className="relative z-10 flex min-h-screen flex-col items-center justify-start pt-40 pb-32 px-4 sm:px-6 overflow-x-clip">
+
+        {/* Subtle pill badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8"
+        >
+          <div className="group inline-flex cursor-pointer items-center rounded-full border border-zinc-200/60 bg-white/40 dark:border-zinc-800/60 dark:bg-zinc-900/30 px-3 py-1.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 backdrop-blur-xl shadow-sm transition-colors hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
+            <span className="flex size-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] mr-2.5 animate-pulse" />
+            100% free and open source
+            <svg className="ml-2 size-3.5 opacity-60 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </motion.div>
+
+        {/* Headline */}
+        <div className="max-w-4xl text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-100 leading-[1.05]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span className="dark:bg-gradient-to-b dark:from-white/80 dark:via-white dark:to-white/60 dark:bg-clip-text dark:text-transparent inline-block">
+              Animated components
+            </span>
+            <br className="hidden sm:block" />
+            <span className="text-zinc-400 dark:text-zinc-500">that actually ship.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium tracking-tight"
           >
-            Documentation
-          </a>
+            A curated collection of 40+ copy-paste React components built with Tailwind CSS, TypeScript & Framer Motion. Drop into any project — zero configuration, zero compromise.
+          </motion.p>
         </div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 md:mt-8 w-full"
+        >
+          <HeroButtons />
+        </motion.div>
+
+        {/* Bento Grid Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-20 w-full max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-3 md:gap-4 auto-rows-[300px] mb-20 px-4"
+        >
+          {/* Card 1: 1x1 Dark */}
+          <div className="md:col-span-1 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center p-6 pb-0 pt-0">
+               <div className="absolute inset-0 opacity-60 mix-blend-multiply dark:mix-blend-screen scale-150">
+                 {/* <MatrixRain speed={30} fontSize={10} variant="cyan" /> */}
+               </div>
+               {/* <HyperText text="reveal" className="absolute z-10 font-bold text-xl text-zinc-800 dark:text-white tracking-widest uppercase" /> */}
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Matrix rain
+            </div>
+          </div>
+
+          {/* Card 2: 2x1 Dark */}
+          <div className="md:col-span-2 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center pt-8">
+                <div className="w-full flex h-24 overflow-hidden relative" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+                   {/* <ScrollBasedVelocity text="COMPONENTRY" default_velocity={3} className="font-sans font-black text-6xl md:text-8xl tracking-tighter text-zinc-800 dark:text-white" /> */}
+                </div>
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Scroll velocity
+            </div>
+          </div>
+
+          {/* Card 3: 1x2 White */}
+          <div className="md:col-span-1 md:row-span-2 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden">
+              <InfiniteIconField />
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Infinite icon field
+            </div>
+          </div>
+
+          {/* Card 4: 2x1 White */}
+          <div className="md:col-span-2 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center p-0">
+                 {/* <MagnetLines 
+                    rows={5} 
+                    columns={22} 
+                    containerSize="100%" 
+                    lineColor="rgba(113,113,122,0.5)" 
+                    lineWidth="4px" 
+                    lineHeight="32px"
+                 />
+                 <BorderBeam duration={12} size={150} colorFrom="#e5e5e5" colorTo="#333333" className="rounded-xl opacity-10 dark:opacity-30 absolute inset-0 pointer-events-none" borderWidth={1} /> */}
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400 flex items-center justify-between">
+              Magnet lines
+              <span className="text-zinc-400 font-mono text-xs tracking-wider opacity-60">[ hover over me ]</span>
+            </div>
+          </div>
+
+          {/* Card 5: 1x1 Dark */}
+          <div className="md:col-span-1 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center p-0">
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                   {/* <AnimatedGradient config={{ preset: "Aurora" }} /> */}
+                </div>
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Animated gradient
+            </div>
+          </div>
+
+          {/* Card 6: 1x1 Dither Gradient */}
+          <div className="md:col-span-1 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center">
+              <div className="absolute inset-0 z-0 opacity-100 rounded-xl overflow-hidden">
+                 {/* <DitherGradient colorFrom="#ffaa40" colorTo="#9c40ff" colorMid="#ff00cc" intensity={0.5} speed={2} /> */}
+              </div>
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Dither gradient
+            </div>
+          </div>
+
+          {/* Card 7: 3x1 Magnetic Dock */}
+          <div className="md:col-span-3 md:row-span-1 relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/80 bg-white dark:bg-[#1a1a1a] shadow-sm p-2">
+            <div className="relative flex-1 w-full rounded-xl bg-zinc-50 dark:bg-[#111] border border-dashed border-zinc-200/50 dark:border-zinc-800/80 overflow-hidden flex flex-col items-center justify-center p-10 text-black">
+              <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:16px_16px] opacity-70 dark:opacity-60" />
+              
+              <div className="z-10 w-full flex justify-center items-center relative translate-y-2">
+                 {/* <MagneticDock 
+                    items={[
+                       { id: "home", label: "Home", icon: <DockIconHome /> },
+                       { id: "search", label: "Search", icon: <DockIconSearch /> },
+                       { id: "mail", label: "Mail", icon: <DockIconMail />, badge: 3 },
+                       { id: "folder", label: "Projects", icon: <DockIconFolder /> },
+                       { id: "settings", label: "Settings", icon: <DockIconSettings /> },
+                    ]}
+                    position="bottom"
+                    variant="glass"
+                    className="mx-auto"
+                 /> */}
+              </div>
+            </div>
+            <div className="shrink-0 pt-3 pb-1 px-3 text-sm font-medium text-zinc-700 dark:text-zinc-400">
+              Magnetic dock
+            </div>
+          </div>
+        </motion.div>
+
       </main>
+
+      <Testimonials />
+      <Footer />
+
     </div>
-  );
+  )
 }
