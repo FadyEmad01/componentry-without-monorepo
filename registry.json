@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "componentry",
-  "homepage": "https://componentry.fun",
+  "name": "componentry-without-monorepo",
+  "homepage": "https://componentry-without-monorepo.vercel.app",
   "items": [
     {
       "name": "my-new-test-component",
