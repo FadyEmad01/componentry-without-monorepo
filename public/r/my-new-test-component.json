@@ -8,10 +8,10 @@
   ],
   "files": [
     {
-      "path": "src/components/docs/registry/my-new-test-component.tsx",
+      "path": "src/registry/default/my-new-test-component/my-new-test-component.tsx",
       "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface MyNewTestComponentProps {\n  className?: string\n}\n\nexport function MyNewTestComponent({ className }: MyNewTestComponentProps) {\n  return (\n    <div className={cn(\"w-full h-full flex items-center justify-center\", className)}>\n      <div className=\"rounded-xl border border-border/50 bg-background px-4 py-3 text-sm text-muted-foreground\">\n        My New Test Component (preview)\n      </div>\n    </div>\n  )\n}",
-      "type": "registry:component"
+      "type": "registry:block"
     }
   ],
-  "type": "registry:component"
+  "type": "registry:block"
 }

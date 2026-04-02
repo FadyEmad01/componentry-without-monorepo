@@ -54,7 +54,7 @@ async function main() {
   await Promise.all([ensureDir(registryDir), ensureDir(previewsDir), ensureDir(publicRDir)])
 
   // 1) Component implementation (placeholder)
-  const componentTsxRel = `src/components/docs/registry/${slug}.tsx`
+  const componentTsxRel = `src/registry/default/${slug}/${slug}.tsx`
   const componentTsxAbs = path.join(repoRoot, componentTsxRel)
   const componentTsx = `"use client"
 
@@ -81,7 +81,7 @@ export function ${title.replace(/\s/g, "")}({ className }: ${title.replace(/\s/g
   const previewTsxAbs = path.join(previewsDir, `${slug}-preview.tsx`)
   const previewTsx = `"use client"
 
-import { ${title.replace(/\s/g, "")} } from "../registry/${slug}"
+import { ${title.replace(/\s/g, "")} } from "@/registry/default/${slug}/${slug}"
 
 export function ${previewName}() {
   return (
@@ -129,14 +129,14 @@ export async function ${title.replace(/\s/g, "")}Docs() {
   const registryItem = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: slug,
-    type: "registry:component",
+    type: "registry:block",
     title,
     description: `${title} description.`,
     dependencies: [],
     files: [
       {
         path: componentTsxRel,
-        type: "registry:component",
+        type: "registry:block",
         content: componentTsx,
       },
     ],
@@ -151,11 +151,11 @@ export async function ${title.replace(/\s/g, "")}Docs() {
   if (!exists) {
     index.items.push({
       name: slug,
-      type: "registry:component",
+      type: "registry:block",
       title,
       description: `${title} description.`,
       dependencies: [],
-      files: [{ path: componentTsxRel, type: "registry:component" }],
+      files: [{ path: componentTsxRel, type: "registry:block" }],
     })
     index.items.sort((a, b) => a.name.localeCompare(b.name))
   }

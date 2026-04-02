@@ -1,11 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "componentry",
-  "homepage": "https://componentry.fun",
+  "name": "componentry-without-monorepo",
+  "homepage": "https://componentry-without-monorepo.vercel.app",
   "items": [
     {
       "name": "my-new-test-component",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "My New Test Component",
       "description": "My New Test Component description.",
       "dependencies": [
@@ -13,14 +13,14 @@
       ],
       "files": [
         {
-          "path": "src/components/docs/registry/my-new-test-component.tsx",
-          "type": "registry:component"
+          "path": "src/registry/default/my-new-test-component/my-new-test-component.tsx",
+          "type": "registry:block"
         }
       ]
     },
     {
       "name": "scroll-based-velocity",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Velocity Scroll",
       "description": "Text that moves horizontally based on scroll speed.",
       "dependencies": [
@@ -28,8 +28,8 @@
       ],
       "files": [
         {
-          "path": "src/components/docs/registry/scroll-based-velocity.tsx",
-          "type": "registry:component"
+          "path": "src/registry/default/scroll-based-velocity/scroll-based-velocity.tsx",
+          "type": "registry:block"
         }
       ]
     }

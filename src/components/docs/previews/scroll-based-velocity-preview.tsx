@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
-import { ScrollBasedVelocity } from "../registry/scroll-based-velocity";
+import { ScrollBasedVelocity } from "@/registry/default/scroll-based-velocity/scroll-based-velocity";
 
 export function ScrollBasedVelocityDemo() {
     const containerRef = useRef<HTMLDivElement>(null);
