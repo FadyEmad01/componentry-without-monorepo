@@ -54,8 +54,8 @@ async function main() {
   await Promise.all([ensureDir(registryDir), ensureDir(previewsDir), ensureDir(publicRDir)])
 
   // 1) Component implementation (placeholder)
-  const componentTsxRel = `components/docs/registry/${slug}.tsx`
-  const componentTsxAbs = path.join(repoRoot, "src", componentTsxRel)
+  const componentTsxRel = `src/components/docs/registry/${slug}.tsx`
+  const componentTsxAbs = path.join(repoRoot, componentTsxRel)
   const componentTsx = `"use client"
 
 import * as React from "react"
@@ -143,7 +143,7 @@ export async function ${title.replace(/\s/g, "")}Docs() {
   }
 
   // 5) Registry index update
-  const registryIndexAbs = path.join(repoRoot, "public", "registry.json")
+  const registryIndexAbs = path.join(repoRoot, "registry.json")
   const indexRaw = await readFile(registryIndexAbs, "utf8")
   const index = JSON.parse(indexRaw) as RegistryIndex
 

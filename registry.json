@@ -13,7 +13,7 @@
       ],
       "files": [
         {
-          "path": "components/docs/registry/my-new-test-component.tsx",
+          "path": "src/components/docs/registry/my-new-test-component.tsx",
           "type": "registry:component"
         }
       ]
@@ -28,7 +28,7 @@
       ],
       "files": [
         {
-          "path": "components/docs/registry/scroll-based-velocity.tsx",
+          "path": "src/components/docs/registry/scroll-based-velocity.tsx",
           "type": "registry:component"
         }
       ]
