@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "componentry",
+  "homepage": "https://componentry.fun",
+  "items": [
+    {
+      "name": "my-new-test-component",
+      "type": "registry:component",
+      "title": "My New Test Component",
+      "description": "My New Test Component description.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "components/docs/registry/my-new-test-component.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scroll-based-velocity",
+      "type": "registry:component",
+      "title": "Velocity Scroll",
+      "description": "Text that moves horizontally based on scroll speed.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "components/docs/registry/scroll-based-velocity.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { Star } from "lucide-react"
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@/lib/utils"
 
 interface GitHubStarButtonProps {
     className?: string
@@ -72,12 +72,12 @@ export function GitHubStarButton({ className, theme = "default" }: GitHubStarBut
                 "group relative inline-flex items-center gap-2.5 border text-sm font-semibold transition-all",
                 isLanding
                     ? "h-12 px-8 rounded-full border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900"
-                    : "h-9 px-3 rounded-md md:rounded-lg border-yellow-500/15 bg-yellow-500/[0.02] text-muted-foreground hover:bg-yellow-500/10 hover:text-foreground",
+                    : "h-9 px-3 rounded-md md:rounded-lg border-yellow-500/15 bg-yellow-500/2 text-muted-foreground hover:bg-yellow-500/10 hover:text-foreground",
                 className
             )}
         >
             <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 text-yellow-500 fill-yellow-500 transition-transform duration-300 group-hover:rotate-[15deg] group-hover:scale-110" />
+                <Star className="h-4 w-4 text-yellow-500 fill-yellow-500 transition-transform duration-300 group-hover:rotate-15 group-hover:scale-110" />
                 <span>Star on GitHub</span>
             </div>
 

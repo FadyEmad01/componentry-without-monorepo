@@ -159,11 +159,11 @@ function ComponentCard({
         onMouseLeave={stopPreview}
         onFocus={startPreview}
         onBlur={stopPreview}
-        className="group relative flex flex-col rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900/50 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.02)] hover:border-zinc-300 dark:hover:border-zinc-700"
+        className="group relative flex flex-col rounded-3xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900/50 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.02)] hover:border-zinc-300 dark:hover:border-zinc-700"
       >
         {/* ── Preview area (Floating) ── */}
         <div className="p-1.5">
-          <div className="relative h-[220px] w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 group-hover:bg-zinc-100/50 dark:group-hover:bg-zinc-800/80 transition-colors border border-dashed border-zinc-200/50 dark:border-zinc-800/50 overflow-hidden">
+          <div className="relative h-[220px] w-full rounded-[18px] bg-zinc-50 dark:bg-zinc-900/80 group-hover:bg-zinc-100/50 dark:group-hover:bg-zinc-800/80 transition-colors border border-dashed border-zinc-200/50 dark:border-zinc-800/50 overflow-hidden">
             {shouldRenderVideo && previewSources && (
               <video
                 ref={videoRef}

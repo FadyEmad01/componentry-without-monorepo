@@ -174,6 +174,23 @@
     @apply bg-background text-foreground;
   }
 }
+@layer utilities {
+  .effect-font-hero {
+    -webkit-text-stroke: 0.4px #ffffff80;
+    text-shadow: -1px -1px #fff3, 1px 1px #0000001a;
+  }
+
+  .effect-font-gradient {
+    background: linear-gradient(to bottom right, #fff 30%, #ffffff80);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .effect-font-styling {
+    font-feature-settings: "ss01", "ss04", "ss11";
+  }
+}
 
 .no-scrollbar {
   -ms-overflow-style: none;

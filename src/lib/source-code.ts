@@ -1,54 +1,46 @@
+import { readFile } from "node:fs/promises"
+import path from "node:path"
+
+type RegistryFile = { path: string; type: string; content?: string }
+type RegistryItem = { files?: RegistryFile[] } | { default?: { files?: RegistryFile[] } }
+
 // Cache for source code - persists across renders
-const sourceCache = new Map<string, string | null>();
+const sourceCache = new Map<string, string | null>()
 
-/**
- * Read component source code with caching.
- *
- * PERFORMANCE: Uses a simple in-memory cache to avoid
- * redundant dynamic imports and JSON parsing on repeated visits.
- */
-export async function readComponentSource(
-  componentName: string,
-): Promise<string | null> {
-  // Check cache first
-  const cached = sourceCache.get(componentName);
-  if (cached !== undefined) {
-    return cached;
-  }
+function extractFirstFileContent(registry: RegistryItem): string | null {
+  // Support both "registry-item.json" and module-wrapped JSON shapes.
+  // (Some bundlers wrap JSON in a { default: ... } export.)
+  const anyRegistry = registry as unknown as { files?: RegistryFile[]; default?: { files?: RegistryFile[] } }
 
-  try {
-    // Dynamic import the registry JSON
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const registry = (await import(`@/public/r/${componentName}.json`)) as any;
-
-    let content: string | null = null;
-
-    if (registry.files && registry.files.length > 0) {
-      content = registry.files[0].content;
-    } else if (
-      registry.default &&
-      registry.default.files &&
-      registry.default.files.length > 0
-    ) {
-      content = registry.default.files[0].content;
-    }
-
-    // Cache the result
-    sourceCache.set(componentName, content);
-    return content;
-  } catch (error) {
-    console.error(`Error loading registry for ${componentName}:`, error);
-    sourceCache.set(componentName, null);
-    return null;
-  }
+  const files = anyRegistry.files ?? anyRegistry.default?.files
+  const first = files?.[0]
+  return typeof first?.content === "string" ? first.content : null
 }
 
 /**
- * Pre-warm the source cache for a list of component names.
- * Call this at build time or on initial page load for commonly used components.
+ * Read component source code from `public/r/<name>.json` with caching.
+ *
+ * This matches the shadcn registry convention of serving registry item JSON
+ * from a public `r/` folder (or equivalent endpoint).
  */
-export async function preloadComponentSources(
-  componentNames: string[],
-): Promise<void> {
-  await Promise.all(componentNames.map((name) => readComponentSource(name)));
+export async function readComponentSource(componentName: string): Promise<string | null> {
+  const cached = sourceCache.get(componentName)
+  if (cached !== undefined) return cached
+
+  try {
+    const filename = path.join(process.cwd(), "public", "r", `${componentName}.json`)
+    const raw = await readFile(filename, "utf8")
+    const registry = JSON.parse(raw) as RegistryItem
+    const content = extractFirstFileContent(registry)
+    sourceCache.set(componentName, content)
+    return content
+  } catch (error) {
+    console.error(`Error reading registry JSON for ${componentName}:`, error)
+    sourceCache.set(componentName, null)
+    return null
+  }
+}
+
+export async function preloadComponentSources(componentNames: string[]): Promise<void> {
+  await Promise.all(componentNames.map((name) => readComponentSource(name)))
 }

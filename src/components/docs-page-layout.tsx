@@ -128,9 +128,15 @@ export async function DocsPageLayout({
 
               <div className="space-y-6">
                 {/* Title */}
-                <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter bg-gradient-to-br from-zinc-900 via-zinc-500 to-zinc-900 dark:from-white dark:via-zinc-400 dark:to-white bg-clip-text text-transparent leading-[1.1] mb-2 pb-2">
+                {/* <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter bg-gradient-to-br from-zinc-900 via-zinc-500 to-zinc-900 dark:from-white dark:via-zinc-400 dark:to-white bg-clip-text text-transparent leading-[1.1] mb-2 pb-2">
+                  {title}
+                </h1> */}
+                <h1 className="text-4xl leading-[1.1] lg:text-6xl font-bold tracking-tighter text-balance effect-font-hero effect-font-gradient effect-font-styling mb-2 pb-2">
                   {title}
                 </h1>
+                {/* <h1 className="font-serif leading-[1.1] tracking-wide text-4xl lg:text-6xl font-bold text-balance effect-font-hero effect-font-gradient effect-font-styling mb-2 pb-2">
+                  {title}
+                </h1> */}
 
                 {/* Description */}
                 <p className="text-lg text-muted-foreground/90 leading-relaxed max-w-2xl font-normal">

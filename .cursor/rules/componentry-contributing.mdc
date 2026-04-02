@@ -1,0 +1,40 @@
+---
+description: Conventions for adding/fixing components, registry, docs, and media.
+alwaysApply: true
+---
+
+# Componentry contributor conventions
+
+## Component + docs structure (must follow)
+
+- **Component implementation**: `src/components/docs/registry/<slug>.tsx`
+- **Preview/demo wrapper**: `src/components/docs/previews/<slug>-preview.tsx`
+- **Docs page (layout + install + usage)**: `src/components/docs/<slug>.tsx`
+- **Lazy docs importer map**: `src/components/docs/lazy-registry.ts` (add slug entry)
+- **Site metadata**: `src/registry/index.ts` (add ComponentMetadata entry)
+- **Shadcn registry index**: `public/registry.json` (add item)
+- **Shadcn registry item JSON**: `public/r/<slug>.json` (must include file `content`)
+
+## Shadcn registry item rules
+
+- `public/r/<slug>.json` must follow schema `https://ui.shadcn.com/schema/registry-item.json`.
+- Include `files[].content` for at least one file so the docs "View Source" and install tooling can work.
+- Keep the first file as the main component file so `readComponentSource()` can display it.
+
+## Media (Cloudinary) rules
+
+- Store component media metadata (video URL, poster/thumbnail URL) in `src/registry/index.ts` under the component entry.
+- Use env var `CLOUDINARY_URL` for base URL patterns when generating/deriving poster thumbnails.
+- Do not hardcode secrets in repo. Only public URLs should be committed.
+
+## OG images
+
+- Component OG images are dynamic and generated in `src/app/docs/components/[slug]/opengraph-image.tsx`.
+- Do not add per-component static OG PNGs unless there is a strong reason.
+
+## When adding a new component
+
+- Prefer using the generator script (see `scripts/` folder) instead of manual copy/paste.
+- After scaffolding, update content (title/description, usage code, props table, preview).
+- Ensure `npm run build` passes.
+

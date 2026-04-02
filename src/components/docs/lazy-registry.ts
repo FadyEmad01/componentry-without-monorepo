@@ -3,16 +3,22 @@ import type React from "react";
 // Dynamic import map - components are only loaded when needed
 // This is a CRITICAL performance optimization that reduces initial bundle size
 // by ~80% since we only import the component being viewed.
-const docsImportMap: Record<
-  string,
-  () => Promise<
-    | { default: React.ComponentType<Record<string, unknown>> }
-    | { [key: string]: React.ComponentType<Record<string, unknown>> }
+const docsImportMap: Partial<
+  Record<
+    string,
+    () => Promise<
+      | { default: React.ComponentType<Record<string, unknown>> }
+      | { [key: string]: React.ComponentType<Record<string, unknown>> }
+    >
   >
 > = {
   "scroll-based-velocity": () =>
     import("@/components/docs/scroll-based-velocity").then((m) => ({
       default: m.ScrollBasedVelocityDocs,
+    })),
+  "my-new-test-component": () =>
+    import("@/components/docs/my-new-test-component").then((m) => ({
+      default: m.MyNewTestComponentDocs,
     })),
 };
 
