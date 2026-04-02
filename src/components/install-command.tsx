@@ -22,7 +22,7 @@ interface InstallCommandProps {
 
 
 export function InstallCommand({ component }: InstallCommandProps) {
-  const [selected, setSelected] = React.useState<PackageManager>("pnpm")
+  const [selected, setSelected] = React.useState<PackageManager>("npm")
 
   const registryNamespace = process.env.NEXT_PUBLIC_REGISTRY_NAMESPACE || "@componentry"
   const componentRef = component.startsWith("@")
